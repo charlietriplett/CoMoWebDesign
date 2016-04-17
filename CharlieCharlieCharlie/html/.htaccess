@@ -1,0 +1,13 @@
+# remove year and month info from permalinks for blog in root directory
+RewriteRule ^([0-9]{4})/([0-9]{1,2})/([^/]+)/?$ http://comowebdesign/$3/ [R=301,L]
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send would-be 404 requests to Craft
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
+    RewriteRule (.+) index.php?p=$1 [QSA,L]
+
+</IfModule>
